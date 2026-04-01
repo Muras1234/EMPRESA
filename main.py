@@ -1,14 +1,11 @@
 from pymongo import MongoClient
 
-# conexão com MongoDB
 cliente = MongoClient("mongodb://localhost:27017/")
 db = cliente["producao"]
 colecao = db["produtos"]
 
-# limpar coleção (evita duplicação)
 colecao.delete_many({})
 
-# inserir produtos iniciais
 produtos_iniciais = [
     {"_id": 1, "nome": "Produto A", "preco": 10, "lucro": 2, "categoria": "Cat1", "quantidade": 5},
     {"_id": 2, "nome": "Produto B", "preco": 20, "lucro": 4, "categoria": "Cat2", "quantidade": 10},
@@ -18,8 +15,6 @@ produtos_iniciais = [
 ]
 
 colecao.insert_many(produtos_iniciais)
-
-# ---------------- FUNÇÕES ----------------
 
 def adicionar_produto():
     nome = input("Nome: ")
@@ -63,8 +58,6 @@ def apagar_produto():
         print("Produto removido!")
     else:
         print("Produto não encontrado.")
-
-# ---------------- MENU ----------------
 
 while True:
     print("\n1 - Adicionar produto")
